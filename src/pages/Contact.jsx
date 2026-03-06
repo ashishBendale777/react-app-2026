@@ -1,8 +1,11 @@
+import { Typography } from '@mui/material'
 import React from 'react'
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <>
+      <Typography variant='h4'>Contact US</Typography>
+    </>
   )
 }
 
