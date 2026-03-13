@@ -1,9 +1,11 @@
 import { AppBar, Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const AdminLayout = () => {
 
+    const navigate = useNavigate()
     const [isOpen, setisOpen] = useState(false)
 
 
@@ -31,25 +33,29 @@ const AdminLayout = () => {
                         <Typography variant='body1'>Admin Panel</Typography>                       </Toolbar>
                 </AppBar>
             </Box>
-            <Drawer anchor='right' open={isOpen} onClose={handleClose}>
+            <Box>
+                {/* <Toolbar /> */}
+                <Outlet />
+            </Box>
+            <Drawer anchor='left' open={isOpen} onClose={handleClose}>
                 <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                     <List>
                         <ListItem disablePadding>
-                            <ListItemButton>
+                            <ListItemButton onClick={()=> navigate("/admin")}>
                                 {/* <ListItemIcon>
                                     <InboxIcon />
                                 </ListItemIcon> */}
-                                <ListItemText primary="Inbox" />
+                                <ListItemText primary="Dashboard" secondary="Analyze" />
                             </ListItemButton>
                         </ListItem>
 
                         <Divider />
                         <ListItem disablePadding>
-                            <ListItemButton>
+                            <ListItemButton onClick={()=> navigate("/admin/addproduct")}>
                                 {/* <ListItemIcon>
                                     <DraftsIcon />
                                 </ListItemIcon> */}
-                                <ListItemText primary="Drafts" />
+                                <ListItemText primary="Add Product" secondary="Product Profile" />
                             </ListItemButton>
                         </ListItem>
 
@@ -58,16 +64,7 @@ const AdminLayout = () => {
                                 {/* <ListItemIcon>
                                     <DraftsIcon />
                                 </ListItemIcon> */}
-                                <ListItemText primary="Drafts" />
-                            </ListItemButton>
-                        </ListItem>
-
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                {/* <ListItemIcon>
-                                    <DraftsIcon />
-                                </ListItemIcon> */}
-                                <ListItemText primary="Drafts" />
+                                <ListItemText primary="Orders" secondary="Manage Orders" />
                             </ListItemButton>
                         </ListItem>
                     </List>

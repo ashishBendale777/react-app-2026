@@ -7,22 +7,38 @@ import Contact from './pages/Contact'
 import Services from './pages/Services'
 import NotFound from './pages/NotFound'
 import AdminLayout from './layouts/AdminLayout'
+import CustomerLayout from './layouts/CustomerLayout'
+import Login from './pages/auth/Login'
+import Registration from './pages/auth/Registration'
+import Dashboard from './pages/admin/Dashboard'
+import AdminOrders from './pages/admin/AdminOrders'
+import AddProduct from './pages/admin/AddProduct'
+import Products from './pages/customer/Products'
+import CustomerOrders from './pages/customer/CustomerOrders'
+import Profile from './pages/customer/Profile'
 
 const App = () => {
   return (
     <>
-      {/* <MyAppBar /> */}
-      <AdminLayout/>
-      {/* <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/service' element={<Services />} />
-        <Route path='*' element={<NotFound />} />
+      {/* <AdminLayout/> */}
+      {/* <CustomerLayout/> */}
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/register' element={<Registration />} />
 
-      </Routes> */}
+        <Route path='/customer' element={<CustomerLayout />}>
+          <Route index element={<Products />} />
+          <Route path="orders" element={<CustomerOrders />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
 
-      
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="addproduct" element={<AddProduct />} />
+        </Route>
+      </Routes>
+
     </>
   )
 }
