@@ -1,27 +1,43 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Chip, Grid, Stack, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Products = () => {
   const [productsData, setproductsData] = useState([])
+  const [filltedproductsData, setfilltedproductsData] = useState([])
+
+  const [selectedCaategory, setselectedCaategory] = useState("all")
+
 
   useEffect(() => {
-    //define a function for fetching products data
     let fetchProducts = async () => {
       let result = await axios.get("https://dummyjson.com/products")
-      console.log(result.data)
       setproductsData(result.data.products)
+      
+      let fillterResult = productsData.filter((p) => p.category == selectedCaategory)
+      setfilltedproductsData(fillterResult)
+
+      if (selectedCaategory == 'all') {
+        setfilltedproductsData(result.data.products)
+      }
     }
 
-    //call a function
     fetchProducts()
-  }, [])
+  }, [selectedCaategory, productsData])
+
 
   return (
     <>
+      <Stack m={2} justifyContent={"center"} direction="row" spacing={1}>
+        <Chip label="All" color={selectedCaategory == 'all' ? "success" : "info"} variant='filled' onClick={() => setselectedCaategory("all")} />
+        <Chip label="Beauty" color={selectedCaategory == 'beauty' ? "success" : "info"} variant="filled" onClick={() => setselectedCaategory("beauty")} />
+        <Chip label="Fragrances" color={selectedCaategory == 'fragrances' ? "success" : "info"} variant="filled" onClick={() => setselectedCaategory("fragrances")} />
+        <Chip label="Furniture" color={selectedCaategory == 'furniture' ? "success" : "info"} variant="filled" onClick={() => setselectedCaategory("furniture")} />
+        <Chip label="Grossry" color={selectedCaategory == 'groceries' ? "success" : "info"} variant="filled" onClick={() => setselectedCaategory("groceries")} />
+      </Stack>
       <Grid container>
         {
-          productsData.map((prod) => {
+          filltedproductsData.map((prod) => {
 
             return (
               <Grid item size={{
@@ -30,10 +46,10 @@ const Products = () => {
                 md: 6
               }}>
                 <Card>
-                  <CardMedia 
-                  sx={{
-                    height:"200px"
-                  }}
+                  <CardMedia
+                    sx={{
+                      height: "200px"
+                    }}
                     component={"img"}
                     src={prod.thumbnail}>
 
