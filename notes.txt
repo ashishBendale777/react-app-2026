@@ -1,0 +1,3 @@
+formStatus = 1 empty 2 idle 3 loading 4 suvmitted
+
+form actions = suvmit / reset
