@@ -1,8 +1,15 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Chip, Grid, Stack, Typography } from '@mui/material'
+import {
+  Button, Card, CardActions,
+  CardContent, CardMedia, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Stack, Typography
+} from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Products = () => {
+  const [siDiaOpen, setsiDiaOpen] = useState(false)
+
+  const [selectedProduct, setselectedProduct] = useState(null)
+
   const [productsData, setproductsData] = useState([])
   const [filltedproductsData, setfilltedproductsData] = useState([])
 
@@ -13,7 +20,7 @@ const Products = () => {
     let fetchProducts = async () => {
       let result = await axios.get("https://dummyjson.com/products")
       setproductsData(result.data.products)
-      
+
       let fillterResult = productsData.filter((p) => p.category == selectedCaategory)
       setfilltedproductsData(fillterResult)
 
@@ -61,7 +68,10 @@ const Products = () => {
                   </CardContent>
                   <CardActions>
                     <Button>Add To Cart</Button>
-                    <Button>Details</Button>
+                    <Button onClick={() => {
+                      setselectedProduct(prod)
+                      setsiDiaOpen(true)
+                    }} variant='contained'>Details</Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -69,6 +79,24 @@ const Products = () => {
           })
         }
       </Grid>
+
+      <Dialog open={siDiaOpen} onClose={() => setsiDiaOpen(false)}>
+        <DialogTitle>
+          Products Details
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant='body1'>{selectedProduct?.title}</Typography>
+          <Typography variant='body1'>{selectedProduct?.description}</Typography>
+          <Typography variant='body1'>{selectedProduct?.rating}</Typography>
+          <Typography variant='body1'>{selectedProduct?.stock}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => {
+            setsiDiaOpen(false)
+            setselectedProduct(null)
+          }}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }
