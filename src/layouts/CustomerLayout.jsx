@@ -12,7 +12,7 @@ const CustomerLayout = () => {
                         {/* <Typography variant='body1'>Admin Panel</Typography> */}
 
                         <Button color='inherit'>Home</Button>
-                        <Button color='inherit'>Products</Button>
+                        <Button color='inherit' onClick={()=> navigate("/customer")}>Products</Button>
                         <Button color='inherit'>Profile</Button>
                         <Button color='inherit'>Orders</Button>
                         <Button color='inherit'>Login</Button>

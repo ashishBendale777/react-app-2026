@@ -16,6 +16,7 @@ import AddProduct from './pages/admin/AddProduct'
 import Products from './pages/customer/Products'
 import CustomerOrders from './pages/customer/CustomerOrders'
 import Profile from './pages/customer/Profile'
+import ProdDetails from './pages/customer/ProdDetails'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route index element={<Products />} />
           <Route path="orders" element={<CustomerOrders />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="details" element={<ProdDetails />} />
         </Route>
 
         <Route path='/admin' element={<AdminLayout />}>

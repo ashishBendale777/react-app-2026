@@ -4,10 +4,12 @@ import {
 } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
   const [siDiaOpen, setsiDiaOpen] = useState(false)
 
+  const navigate = useNavigate()
   const [selectedProduct, setselectedProduct] = useState(null)
 
   const [productsData, setproductsData] = useState([])
@@ -69,8 +71,9 @@ const Products = () => {
                   <CardActions>
                     <Button>Add To Cart</Button>
                     <Button onClick={() => {
-                      setselectedProduct(prod)
-                      setsiDiaOpen(true)
+                      // setselectedProduct(prod)
+                      // setsiDiaOpen(true)
+                      navigate("/customer/details", { state: prod })
                     }} variant='contained'>Details</Button>
                   </CardActions>
                 </Card>
