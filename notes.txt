@@ -1,3 +1,12 @@
 formStatus = 1 empty 2 idle 3 loading 4 suvmitted
 
 form actions = suvmit / reset
+
+SQL Store Data in Table Format
+with rows and columns 
+* == fetch all columns values
+
+SQL =====  MongoDB
+Table ====  Collections
+Rows  ====  documents
+columns ====  key/values
