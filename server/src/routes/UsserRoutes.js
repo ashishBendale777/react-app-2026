@@ -7,6 +7,6 @@ router.get("/fetchusers",fetchAllUsers)
 router.get("/fetchusers/:id",fetchByUserId)
 router.post("/createuser",createUser)
 router.put("/updateuser",updateUser)
-router.delete("/deleteuser",deleteUser)
+router.delete("/deleteuser/:id",deleteUser)
 
 export const userRoutes = router
