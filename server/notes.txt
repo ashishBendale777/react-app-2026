@@ -1,0 +1,9 @@
+One To One
+One to Many
+Many to Msny
+
+"is a" relation == O2O
+"has a" relation   == O2M
+
+
+Customer  ===O2M===   Order 

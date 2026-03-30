@@ -164,32 +164,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["personal", "business"],
         default: "personal"
-    },
-
-    // ARRAY OF OBJECTS
-    orders: [
-        {
-            productName: {
-                type: String,
-                required: true,
-                minlength: 2
-            },
-            price: {
-                type: Number,
-                required: true,
-                min: 1
-            },
-            quantity: {
-                type: Number,
-                min: 1,
-                default: 1
-            },
-            orderDate: {
-                type: Date,
-                default: Date.now
-            }
-        }
-    ]
+    }
 
 }, {
     timestamps: true,   // createdAt, updatedAt
