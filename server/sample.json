@@ -8,7 +8,12 @@
   "isActive": true,
   "isVerified": false,
   "dateOfBirth": "1997-05-15T00:00:00.000Z",
-  "skills": ["Node.js", "React", "MongoDB", "Express"],
+  "skills": [
+    "Node.js",
+    "React",
+    "MongoDB",
+    "Express"
+  ],
   "address": {
     "street": "MG Road Near City Mall",
     "city": "Jalgaon",
@@ -32,6 +37,25 @@
       "productName": "Mouse",
       "price": 500,
       "quantity": 2
+    }
+  ]
+}
+
+
+{
+  "userId": "",
+  "orderItems": [
+    {
+      "prodId": "",
+      "Qty": 2
+    },
+    {
+      "prodId": "",
+      "Qty": 2
+    },
+    {
+      "prodId": "",
+      "Qty": 2
     }
   ]
 }

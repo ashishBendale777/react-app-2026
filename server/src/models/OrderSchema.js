@@ -9,5 +9,11 @@ let OrderSchema = mongoose.Schema({
         default: "Pending"
     },
     paymentType: { type: String, default: "COD" },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    ordersItems: [
+        {
+            prodId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+            Qty: Number
+        }
+    ]
 })
