@@ -97,73 +97,74 @@ const userSchema = new mongoose.Schema({
     },
 
     // DATE
-    dateOfBirth: {
-        type: Date,
-        validate: {
-            validator: function (value) {
-                return value < new Date();
-            },
-            message: "DOB must be in the past"
-        }
-    },
+    // dateOfBirth: {
+    //     type: Date,
+    //     validate: {
+    //         validator: function (value) {
+    //             return value < new Date();
+    //         },
+    //         message: "DOB must be in the past"
+    //     }
+    // },
+    
     lastLogin: {
         type: Date,
         default: Date.now
     },
 
     // ARRAY
-    skills: {
-        type: [String],
-        validate: {
-            validator: function (arr) {
-                return arr.length <= 10;
-            },
-            message: "Max 10 skills allowed"
-        }
-    },
+    // skills: {
+    //     type: [String],
+    //     validate: {
+    //         validator: function (arr) {
+    //             return arr.length <= 10;
+    //         },
+    //         message: "Max 10 skills allowed"
+    //     }
+    // },
 
     // NESTED OBJECT
     address: addressSchema,
 
     // MIXED OBJECT
-    preferences: {
-        theme: {
-            type: String,
-            enum: ["light", "dark"],
-            default: "light"
-        },
-        notifications: {
-            type: Boolean,
-            default: true
-        }
-    },
+    // preferences: {
+    //     theme: {
+    //         type: String,
+    //         enum: ["light", "dark"],
+    //         default: "light"
+    //     },
+    //     notifications: {
+    //         type: Boolean,
+    //         default: true
+    //     }
+    // },
 
-    // NUMERIC FIELD
-    accountBalance: {
-        type: Number,
-        min: 0,
-        default: 0
-    },
+    // // NUMERIC FIELD
+    // accountBalance: {
+    //     type: Number,
+    //     min: 0,
+    //     default: 0
+    // },
 
-    // CONDITIONAL VALIDATION
-    companyName: {
-        type: String,
-        validate: {
-            validator: function (value) {
-                if (this.accountType === "business") {
-                    return !!value;
-                }
-                return true;
-            },
-            message: "Company name is required for business accounts"
-        }
-    },
+    // // CONDITIONAL VALIDATION
+    // companyName: {
+    //     type: String,
+    //     validate: {
+    //         validator: function (value) {
+    //             if (this.accountType === "business") {
+    //                 return !!value;
+    //             }
+    //             return true;
+    //         },
+    //         message: "Company name is required for business accounts"
+    //     }
+    // },
 
-    accountType: {
-        type: String,
-        enum: ["personal", "business"],
-        default: "personal"
-    }
+    // accountType: {
+    //     type: String,
+    //     enum: ["personal", "business"],
+    //     default: "personal"
+    // }
 
 }, {
     timestamps: true,   // createdAt, updatedAt
