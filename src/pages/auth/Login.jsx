@@ -3,6 +3,8 @@ import axios from 'axios'
 import React, { useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../reduxwork/UserSlice'
 
 const SubmitButton = () => {
   const { pending } = useFormStatus()
@@ -21,8 +23,9 @@ const SubmitButton = () => {
 }
 
 const Login = () => {
-
   const navigator = useNavigate()
+  const dispatch = useDispatch()
+
   const loginUser = async (prevState, formData) => {
     const email = formData.get('email')?.trim()
     const password = formData.get('password')
@@ -40,7 +43,9 @@ const Login = () => {
         password
       })
 
+      dispatch(login(data.data ?? null))
       navigator("/customer")
+
       return {
         success: data.success,
         message: data.message,
