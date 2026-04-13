@@ -5,9 +5,14 @@ import {
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { addItem } from '../../reduxwork/CartSlice'
+import { useDispatch } from 'react-redux'
+
 
 const Products = () => {
   const [siDiaOpen, setsiDiaOpen] = useState(false)
+
+  const dispatcher = useDispatch()
 
   const navigate = useNavigate()
   const [selectedProduct, setselectedProduct] = useState(null)
@@ -60,7 +65,7 @@ const Products = () => {
                       height: "200px"
                     }}
                     component={"img"}
-                    src={prod.thumbnail}>
+                    src={`http://lcalhost:5000/uploads/${prod.prodImage}`}>
 
                   </CardMedia>
                   <CardContent>
@@ -69,7 +74,11 @@ const Products = () => {
                     <Typography variant='body2'>{prod.category}</Typography>
                   </CardContent>
                   <CardActions>
-                    <Button>Add To Cart</Button>
+                    <Button
+                      onClick={() => {
+                        dispatcher(addItem(prod))
+                      }}
+                    >Add To Cart</Button>
                     <Button onClick={() => {
                       // setselectedProduct(prod)
                       // setsiDiaOpen(true)

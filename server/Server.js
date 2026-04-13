@@ -21,6 +21,9 @@ Server.use("/api",userRoutes)
 Server.use("/api",productRoutes)
 Server.use("/api/auth",authRoutes)
 
+Server.use("/uploads",express.static("/uploads"))
+
+
 Server.listen(5000, () => {
     console.log("Server Started...")
 })
