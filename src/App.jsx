@@ -17,6 +17,8 @@ import Products from './pages/customer/Products'
 import CustomerOrders from './pages/customer/CustomerOrders'
 import Profile from './pages/customer/Profile'
 import ProdDetails from './pages/customer/ProdDetails'
+import Cart from './pages/customer/Cart'
+import ProtectedRoute from './componants/ProtectedRoute'
 
 const App = () => {
   return (
@@ -29,16 +31,24 @@ const App = () => {
 
         <Route path='/customer' element={<CustomerLayout />}>
           <Route index element={<Products />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="orders" element={<CustomerOrders />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
           <Route path="details" element={<ProdDetails />} />
         </Route>
 
-        <Route path='/admin' element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="addproduct" element={<AddProduct />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/admin' element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="addproduct" element={<AddProduct />} />
+          </Route>
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
 
     </>
