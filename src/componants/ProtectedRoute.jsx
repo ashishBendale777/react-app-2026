@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated)
   const location = useLocation()
 
@@ -10,7 +10,7 @@ const ProtectedRoute = () => {
     return <Navigate to='/' replace state={{ from: location }} />
   }
 
-  return <Outlet />
+  return children
 }
 
 export default ProtectedRoute
