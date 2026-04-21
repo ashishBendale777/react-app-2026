@@ -47,7 +47,9 @@ const AdminOrders = () => {
     },
     {
       header: "Actions",
-      cell: ({ cell }) => <Button variant='contained'>Details</Button>,
+      cell: ({ row }) => <Button
+        onClick={() => Navigate("/", { state: row.origin })}
+        variant='contained'>Details</Button>,
     }
   ], [])
 
