@@ -7,3 +7,5 @@ let ReviewSchema = mongoose.Schema({
     ratings: { type: Number, required: true },
     comment: { type: String, required: true }
 })
+
+export const Review = mongoose.model("Review", ReviewSchema)

@@ -6,7 +6,8 @@ let fetchOrdersByUserId = async (req, res) => {
     try {
         let result = await Order.find({
             userId
-        })
+        }).where("orderStatus")
+            .neq("Cancel")
     } catch (error) {
 
     }

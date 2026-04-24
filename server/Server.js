@@ -3,6 +3,7 @@ import connectToDb from "./src/config/dbconfig.js"
 import { userRoutes } from "./src/routes/UsserRoutes.js"
 import { productRoutes } from "./src/routes/ProductRoutes.js"
 import { authRoutes } from "./src/routes/AuthRoutes.js"
+import { reviewRoutes } from "./src/routes/ReviewRoutes.js"
 import bodyParser from "body-parser"
 
 //create server
@@ -19,6 +20,7 @@ connectToDb()
 
 Server.use("/api",userRoutes)
 Server.use("/api",productRoutes)
+Server.use("/api",reviewRoutes)
 Server.use("/api/auth",authRoutes)
 
 Server.use("/uploads",express.static("/uploads"))
